@@ -1,8 +1,10 @@
-import { AppBar, Avatar, Divider, Fab, IconButton, List, ListItem, ListItemAvatar, ListItemText, Toolbar, Typography, withStyles } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
+import { Fab, List, withStyles } from "@material-ui/core";
 import WorkIcon from "@material-ui/icons/Work";
 import AddIcon from "@material-ui/icons/Add";
 import React from "react";
+
+import ChatListHeader from "../components/chat-list-header";
+import ChatListItem from "../components/chat-list-item";
 
 const styles = withStyles(
     (theme) => ({
@@ -23,24 +25,9 @@ class ChatListPage extends React.Component<Props> {
         const { classes } = this.props;
         return (
             <>
-                <AppBar position="static">
-                    <Toolbar>
-                        <IconButton edge="start" color="inherit" aria-label="menu">
-                            <MenuIcon />
-                        </IconButton>
-                        <Typography variant="h6">チャットルーム一覧</Typography>
-                    </Toolbar>
-                </AppBar>
+                <ChatListHeader />
                 <List>
-                    <ListItem button component="a" href="#">
-                        <ListItemAvatar>
-                            <Avatar>
-                                <WorkIcon />
-                            </Avatar>
-                        </ListItemAvatar>
-                        <ListItemText primary="デフォルトチャットルーム" secondary="2021/01/01" />
-                    </ListItem>
-                    <Divider variant="inset" component="li" />
+                    <ChatListItem avatar={<WorkIcon />} text="test" timestamp="test" roomId="1"/>
                 </List>
                 <Fab color="primary" className={classes.Fab} aria-label="add">
                     <AddIcon />
