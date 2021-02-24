@@ -1,8 +1,6 @@
 import { Avatar, ListItem, ListItemAvatar, ListItemText } from "@material-ui/core";
 import React, { ReactElement } from "react";
-// import { RouteComponentProps, withRouter } from "react-router";
-
-// import * as H from "history";
+import useReactRouter from "use-react-router";
 
 interface ChatListItemProps {
     avatar: ReactElement;
@@ -12,9 +10,9 @@ interface ChatListItemProps {
 }
 
 function ChatListItem(props: ChatListItemProps) {
+    const { history } = useReactRouter();
     function handlePage(): void {
-        console.log("test");
-        //        props.history.push("/room?roomId=" + props.roomId);
+        history.push("/room?roomId=" + props.roomId);
     }
 
     return (
