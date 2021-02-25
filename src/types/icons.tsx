@@ -1,5 +1,15 @@
 import { SvgIcon } from "@material-ui/core";
-import { Audiotrack, Business, ChildCare, DriveEta, Explore, FitnessCenter, Games, Home } from "@material-ui/icons";
+import {
+    Audiotrack,
+    Business,
+    ChildCare,
+    DriveEta,
+    Explore,
+    FitnessCenter,
+    Games,
+    Home,
+    Work,
+} from "@material-ui/icons";
 
 export const icons: { [key: string]: typeof SvgIcon } = {
     Audiotrack: Audiotrack,
@@ -10,4 +20,5 @@ export const icons: { [key: string]: typeof SvgIcon } = {
     FitnessCenter: FitnessCenter,
     Games: Games,
     Home: Home,
+    Work: Work,
 };
