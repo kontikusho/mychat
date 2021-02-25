@@ -1,10 +1,9 @@
-import { Fab, List, withStyles } from "@material-ui/core";
-import WorkIcon from "@material-ui/icons/Work";
+import { Fab, withStyles } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import React from "react";
 
 import ChatListHeader from "../components/chat-list-header";
-import ChatListItem from "../components/chat-list-item";
+import ChatList from "../components/chat-list";
 
 const styles = withStyles(
     (theme) => ({
@@ -26,9 +25,7 @@ class ChatListPage extends React.Component<Props> {
         return (
             <>
                 <ChatListHeader />
-                <List>
-                    <ChatListItem avatar={<WorkIcon />} text="test" timestamp="test" roomId="1"/>
-                </List>
+                <ChatList data={[]}/>
                 <Fab color="primary" className={classes.Fab} aria-label="add">
                     <AddIcon />
                 </Fab>

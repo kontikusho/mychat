@@ -1,5 +1,7 @@
 import { List } from "@material-ui/core";
-import { Work } from "@material-ui/icons";
+import moment from "moment";
+import React from "react";
+import { icons } from "../types/icons";
 import { Room } from "../types/store";
 import ChatListItem from "./chat-list-item";
 
@@ -10,7 +12,18 @@ interface ChatListProps {
 function ChatList(props: ChatListProps) {
     return (
         <List>
-            <ChatListItem avatar={<Work />} text="test" timestamp="test" roomId="123" />
+            {props.data.map((item) => {
+                const AvatarIcon = icons[item.icons];
+                return (
+                    <ChatListItem
+                        avatar={<AvatarIcon />}
+                        text={item.name}
+                        timestamp={moment(item.last).fromNow()}
+                        key={item.id}
+                        roomId={item.id}
+                    />
+                );
+            })}
         </List>
     );
 }

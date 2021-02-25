@@ -23,4 +23,5 @@ export interface Room {
     icons: string;
     name: string;
     users: User[];
+    last: Date;
 }

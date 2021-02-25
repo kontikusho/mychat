@@ -1,4 +1,9 @@
-import { Avatar, ListItem, ListItemAvatar, ListItemText } from "@material-ui/core";
+import {
+    Avatar,
+    ListItem,
+    ListItemAvatar,
+    ListItemText,
+} from "@material-ui/core";
 import React, { ReactElement } from "react";
 import useReactRouter from "use-react-router";
 
