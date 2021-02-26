@@ -1,13 +1,18 @@
-import { CssBaseline } from "@material-ui/core";
+import { CssBaseline, ThemeProvider } from "@material-ui/core";
 import React from "react";
 import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
 import Routes from "./routes";
+import { unstable_createMuiStrictModeTheme as createMuiTheme } from "@material-ui/core";
+
+const theme = createMuiTheme({});
 
 ReactDOM.render(
     <React.StrictMode>
-        <CssBaseline />
-        <Routes />
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Routes />
+        </ThemeProvider>
     </React.StrictMode>,
     document.getElementById("root")
 );
