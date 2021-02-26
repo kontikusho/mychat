@@ -1,5 +1,6 @@
 import {
     Avatar,
+    Divider,
     ListItem,
     ListItemAvatar,
     ListItemText,
@@ -21,12 +22,18 @@ function ChatListItem(props: ChatListItemProps) {
     }
 
     return (
-        <ListItem button component="div" onClick={() => handlePage()}>
-            <ListItemAvatar>
-                <Avatar>{props.avatar}</Avatar>
-            </ListItemAvatar>
-            <ListItemText primary={props.text} secondary={props.timestamp} />
-        </ListItem>
+        <>
+            <ListItem button component="div" onClick={() => handlePage()}>
+                <ListItemAvatar>
+                    <Avatar>{props.avatar}</Avatar>
+                </ListItemAvatar>
+                <ListItemText
+                    primary={props.text}
+                    secondary={props.timestamp}
+                />
+            </ListItem>
+            <Divider />
+        </>
     );
 }
 

@@ -1,4 +1,4 @@
-import { Divider, List } from "@material-ui/core";
+import { List } from "@material-ui/core";
 import moment from "moment";
 import React from "react";
 import { icons } from "../types/icons";
@@ -15,16 +15,13 @@ function ChatList(props: ChatListProps) {
             {props.data.map((item) => {
                 const AvatarIcon = icons[item.icons];
                 return (
-                    <>
-                        <ChatListItem
-                            avatar={<AvatarIcon />}
-                            text={item.name}
-                            timestamp={moment(item.last).fromNow()}
-                            key={item.id}
-                            roomId={item.id}
-                        />
-                        <Divider />
-                    </>
+                    <ChatListItem
+                        avatar={<AvatarIcon />}
+                        text={item.name}
+                        timestamp={moment(item.last).fromNow()}
+                        key={item.id}
+                        roomId={item.id}
+                    />
                 );
             })}
         </List>
