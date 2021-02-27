@@ -1,10 +1,11 @@
 import { Fab, makeStyles, Theme } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
-import React from "react";
+import React, { useState } from "react";
 
 import ChatListHeader from "../components/chat-list-header";
 import ChatList from "../components/chat-list";
 import { Room } from "../types/store";
+import CreateChatRoomDialog from "../components/create-chat-room-dialog";
 
 const useStyles = makeStyles((theme: Theme) => ({
     fab: {
@@ -34,12 +35,20 @@ const data: Room[] = [
 
 export default function ChatListPage() {
     const classes = useStyles();
+    const [open, setOpen] = useState(false);
+    const handleOpen = function (_: React.MouseEvent): void {
+        setOpen(true);
+    };
+    const handleClose = function (_: React.MouseEvent): void {
+        setOpen(false);
+    };
     return (
         <>
             <ChatListHeader />
             <div className={classes.offset} />
             <ChatList data={data} />
-            <Fab color="primary" className={classes.fab} aria-label="add">
+            <CreateChatRoomDialog isOpen={open} closeHandler={handleClose} />
+            <Fab color="primary" className={classes.fab} onClick={handleOpen}>
                 <AddIcon />
             </Fab>
         </>
