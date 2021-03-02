@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CloseButton from "./close-button";
 import {
     AppBar,
+    Button,
     Dialog,
+    DialogContent,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    Select,
     Slide,
     SlideProps,
+    TextField,
     Toolbar,
     Typography,
 } from "@material-ui/core";
+import { icons } from "../types/icons";
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -31,6 +39,12 @@ interface CreateChatRoomDialogProps {
 
 export default function CreateChatRoomDialog(props: CreateChatRoomDialogProps) {
     const classes = useStyles();
+    const [icon, setIcon] = useState("");
+    const handleChange = function (
+        event: React.ChangeEvent<{ value: unknown }>
+    ) {
+        setIcon(event.target.value as string);
+    };
     return (
         <Dialog fullScreen open={props.isOpen} TransitionComponent={Transition}>
             <AppBar position="relative" color="secondary">
@@ -41,6 +55,31 @@ export default function CreateChatRoomDialog(props: CreateChatRoomDialogProps) {
                     <CloseButton onClick={props.closeHandler} />
                 </Toolbar>
             </AppBar>
+            <DialogContent >
+                <FormControl fullWidth margin="normal">
+                    <TextField
+                        label="ルーム名"
+                        placeholder="ルーム名を入力してください"
+                    />
+                </FormControl>
+                <FormControl fullWidth margin="normal">
+                    <InputLabel>アイコン</InputLabel>
+                    <Select value={icon} onChange={handleChange} fullWidth>
+                        {Object.keys(icons).map((keys) => {
+                            const Icon = icons[keys];
+                            return (
+                                <MenuItem value={keys} key={keys}>
+                                    <Icon />
+                                    {keys}
+                                </MenuItem>
+                            );
+                        })}
+                    </Select>
+                </FormControl>
+                <FormControl fullWidth margin="normal">
+                    <Button variant="contained" color="primary">ルーム作成</Button>
+                </FormControl>
+            </DialogContent>
         </Dialog>
     );
 }
