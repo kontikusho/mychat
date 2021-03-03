@@ -42,12 +42,16 @@ export default function ChatListPage() {
     const handleClose = function (_: React.MouseEvent): void {
         setOpen(false);
     };
+    const createHandler = (data: { icon: string, roomName: string }) => {
+        console.log(data);
+        setOpen(false)
+    }
     return (
         <>
             <ChatListHeader />
             <div className={classes.offset} />
             <ChatList data={data} />
-            <CreateChatRoomDialog isOpen={open} closeHandler={handleClose} />
+            <CreateChatRoomDialog isOpen={open} closeHandler={handleClose} createHandler={createHandler} />
             <Fab color="primary" className={classes.fab} onClick={handleOpen}>
                 <AddIcon />
             </Fab>

@@ -35,16 +35,22 @@ const Transition = React.forwardRef(function Transition(
 interface CreateChatRoomDialogProps {
     isOpen: boolean;
     closeHandler: (e: React.MouseEvent) => void;
+    createHandler: (data: { icon: string, roomName: string }) => void;
 }
 
 export default function CreateChatRoomDialog(props: CreateChatRoomDialogProps) {
     const classes = useStyles();
     const [icon, setIcon] = useState("");
-    const handleChange = function (
-        event: React.ChangeEvent<{ value: unknown }>
-    ) {
+    const [roomName, setRoomName] = useState("");
+    function handleChange(event: React.ChangeEvent<{ value: unknown; }>) {
         setIcon(event.target.value as string);
-    };
+    }
+    function handleRoomName(event: React.ChangeEvent<{ value: unknown; }>) {
+        setRoomName(event.target.value as string)
+    }
+    function handleCreate() {
+        props.createHandler({ icon, roomName });
+    }
     return (
         <Dialog fullScreen open={props.isOpen} TransitionComponent={Transition}>
             <AppBar position="relative" color="secondary">
@@ -60,6 +66,8 @@ export default function CreateChatRoomDialog(props: CreateChatRoomDialogProps) {
                     <TextField
                         label="ルーム名"
                         placeholder="ルーム名を入力してください"
+                        onChange={handleRoomName}
+                        value={roomName}
                     />
                 </FormControl>
                 <FormControl fullWidth margin="normal">
@@ -77,7 +85,7 @@ export default function CreateChatRoomDialog(props: CreateChatRoomDialogProps) {
                     </Select>
                 </FormControl>
                 <FormControl fullWidth margin="normal">
-                    <Button variant="contained" color="primary">ルーム作成</Button>
+                    <Button variant="contained" color="primary" onClick={handleCreate} > ルーム作成</Button>
                 </FormControl>
             </DialogContent>
         </Dialog>

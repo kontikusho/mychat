@@ -15,6 +15,14 @@ interface ChatListItemProps {
     timestamp: string;
 }
 
+interface PrimaryTextProps {
+    text: string;
+}
+
+function PrimaryText(props: PrimaryTextProps) {
+    return <div>{props.text}test</div>
+}
+
 function ChatListItem(props: ChatListItemProps) {
     const { history } = useReactRouter();
     function handlePage(): void {
@@ -28,7 +36,7 @@ function ChatListItem(props: ChatListItemProps) {
                     <Avatar>{props.avatar}</Avatar>
                 </ListItemAvatar>
                 <ListItemText
-                    primary={props.text}
+                    primary={<PrimaryText text={props.text} />}
                     secondary={props.timestamp}
                 />
             </ListItem>
