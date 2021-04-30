@@ -7,16 +7,12 @@ import {
     Dialog,
     DialogContent,
     FormControl,
-    InputLabel,
-    MenuItem,
-    Select,
     Slide,
     SlideProps,
     TextField,
     Toolbar,
     Typography,
 } from "@material-ui/core";
-import { icons } from "../types/icons";
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -35,21 +31,17 @@ const Transition = React.forwardRef(function Transition(
 interface CreateChatRoomDialogProps {
     isOpen: boolean;
     closeHandler: (e: React.MouseEvent) => void;
-    createHandler: (data: { icon: string, roomName: string }) => void;
+    createHandler: (data: { roomName: string }) => void;
 }
 
 export default function CreateChatRoomDialog(props: CreateChatRoomDialogProps) {
     const classes = useStyles();
-    const [icon, setIcon] = useState("");
     const [roomName, setRoomName] = useState("");
-    function handleChange(event: React.ChangeEvent<{ value: unknown; }>) {
-        setIcon(event.target.value as string);
-    }
-    function handleRoomName(event: React.ChangeEvent<{ value: unknown; }>) {
-        setRoomName(event.target.value as string)
+    function handleRoomName(event: React.ChangeEvent<{ value: unknown }>) {
+        setRoomName(event.target.value as string);
     }
     function handleCreate() {
-        props.createHandler({ icon, roomName });
+        props.createHandler({ roomName });
     }
     return (
         <Dialog fullScreen open={props.isOpen} TransitionComponent={Transition}>
@@ -61,7 +53,7 @@ export default function CreateChatRoomDialog(props: CreateChatRoomDialogProps) {
                     <CloseButton onClick={props.closeHandler} />
                 </Toolbar>
             </AppBar>
-            <DialogContent >
+            <DialogContent>
                 <FormControl fullWidth margin="normal">
                     <TextField
                         label="ルーム名"
@@ -71,21 +63,13 @@ export default function CreateChatRoomDialog(props: CreateChatRoomDialogProps) {
                     />
                 </FormControl>
                 <FormControl fullWidth margin="normal">
-                    <InputLabel>アイコン</InputLabel>
-                    <Select value={icon} onChange={handleChange} fullWidth>
-                        {Object.keys(icons).map((keys) => {
-                            const Icon = icons[keys];
-                            return (
-                                <MenuItem value={keys} key={keys}>
-                                    <Icon />
-                                    {keys}
-                                </MenuItem>
-                            );
-                        })}
-                    </Select>
-                </FormControl>
-                <FormControl fullWidth margin="normal">
-                    <Button variant="contained" color="primary" onClick={handleCreate} > ルーム作成</Button>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={handleCreate}
+                    >
+                        ルーム作成
+                    </Button>
                 </FormControl>
             </DialogContent>
         </Dialog>

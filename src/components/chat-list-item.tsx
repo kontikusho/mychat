@@ -1,15 +1,11 @@
 import {
-    Avatar,
     Divider,
     ListItem,
-    ListItemAvatar,
     ListItemText,
 } from "@material-ui/core";
-import React, { ReactElement } from "react";
 import useReactRouter from "use-react-router";
 
 interface ChatListItemProps {
-    avatar: ReactElement;
     roomId: string;
     text: string;
     timestamp: string;
@@ -20,7 +16,7 @@ interface PrimaryTextProps {
 }
 
 function PrimaryText(props: PrimaryTextProps) {
-    return <div>{props.text}test</div>
+    return <div>{props.text}</div>
 }
 
 function ChatListItem(props: ChatListItemProps) {
@@ -32,10 +28,7 @@ function ChatListItem(props: ChatListItemProps) {
     return (
         <>
             <ListItem button component="div" onClick={() => handlePage()}>
-                <ListItemAvatar>
-                    <Avatar>{props.avatar}</Avatar>
-                </ListItemAvatar>
-                <ListItemText
+               <ListItemText
                     primary={<PrimaryText text={props.text} />}
                     secondary={props.timestamp}
                 />

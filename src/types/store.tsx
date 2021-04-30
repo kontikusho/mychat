@@ -11,7 +11,6 @@ export interface Message {
 export interface User {
     id: string;
     name: string;
-    icons: string;
     socketId: string;
 }
 
@@ -20,7 +19,6 @@ export interface User {
  */
 export interface Room {
     id: string;
-    icons: string;
     name: string;
     users: User[];
     last: Date;

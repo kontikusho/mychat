@@ -1,52 +1,164 @@
 import React from "react";
-import { AppBar, Box, Grid, IconButton, Input, Toolbar, Typography, withStyles } from "@material-ui/core";
+import {
+  AppBar,
+  Box,
+  Divider,
+  Grid,
+  IconButton,
+  Input,
+  List,
+  ListItem,
+  ListItemText,
+  makeStyles,
+  Theme,
+  Toolbar,
+  Typography,
+} from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import SendIcon from "@material-ui/icons/Send";
-const styles = withStyles(
-    (theme) => ({
-        AppBar: {
-            bottom: 0,
-            top: "auto",
-        },
-        offset: theme.mixins.toolbar,
-    }),
-    { withTheme: true }
-);
-interface Props {
-    classes: any;
-}
+import moment from "moment";
 
-class ChatRoomPage extends React.Component<Props> {
-    render() {
-        const { classes } = this.props;
-        return (
-            <>
-                <AppBar position="fixed">
-                    <Toolbar>
-                        <IconButton edge="start" color="inherit" aria-label="menu">
-                            <MenuIcon />
-                        </IconButton>
-                        <Typography variant="h6">チャットルーム一覧</Typography>
-                    </Toolbar>
-                </AppBar>
-                <Box flexDirection="column" className={classes.offset}>
-                    test
-                </Box>
-                <Box position="fixed" color="transparent" className={classes.AppBar}>
-                    <div>
-                        <Grid container spacing={1} alignItems="flex-end">
-                            <Grid item>
-                                <Input placeholder="メッセージを入力してください"/>
-                            </Grid>
-                            <Grid item>
-                                <SendIcon color="primary"/>
-                            </Grid>
-                        </Grid>
-                    </div>
-                </Box>
-            </>
-        );
-    }
-}
+const useStyles = makeStyles((theme: Theme) => ({
+  Grid: {
+    display: 'grid',
+    gridTemplateRows: theme.mixins.toolbar.minHeight + 'px auto ' + theme.mixins.toolbar.minHeight + 'px',
+    gridTemplateColumns: '100%',
+  },
 
-export default styles(ChatRoomPage);
+  root: {
+    width: "100%",
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
+
+export default function ChatRoomPage() {
+  const classes = useStyles();
+  return (
+    <Grid container
+      direction="column"
+      justify="space-between"
+      alignItems="stretch"
+      className={classes.Grid}
+    >
+      <AppBar>
+        <Toolbar>
+          <IconButton edge="start" color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6">チャットルーム一覧</Typography>
+        </Toolbar>
+      </AppBar>
+
+      <Grid container
+        direction="column"
+        justify="flex-end"
+        alignItems="stretch"
+      >
+        <List className={classes.root}>
+          <ListItem>
+            <ListItemText
+              primary={
+                <Grid
+                  container
+                  direction="row"
+                  justify="space-between"
+                  alignItems="flex-start"
+                >
+                  <Box fontWeight={700}>
+                    ユーザー名
+                                    </Box>
+                  {moment(new Date()).fromNow()}
+                </Grid>
+              }
+              secondary={
+                <React.Fragment>
+                  <Typography
+                    component="span"
+                    variant="body2"
+                    color="textPrimary"
+                  >
+                    チャットメッセージ
+                                    </Typography>
+                </React.Fragment>
+              }
+            />
+          </ListItem>
+          <Divider />
+          <ListItem >
+            <ListItemText
+              primary={
+                <Grid
+                  container
+                  direction="row"
+                  justify="space-between"
+                  alignItems="flex-start"
+                >
+                  <Box fontWeight={700}>
+                    ユーザー名
+                                    </Box>
+                  {moment(new Date()).fromNow()}
+                </Grid>
+              }
+              secondary={
+                <React.Fragment>
+                  <Typography
+                    component="span"
+                    variant="body2"
+                    color="textPrimary"
+                  >
+                    チャットメッセージ
+                                    </Typography>
+                </React.Fragment>
+              }
+            />
+          </ListItem>
+          <Divider />
+          <ListItem>
+            <ListItemText
+              primary={
+                <Grid
+                  container
+                  direction="row"
+                  justify="space-between"
+                  alignItems="flex-start"
+                >
+                  <Box fontWeight={700}>
+                    ユーザー名
+                                    </Box>
+                  {moment(new Date()).fromNow()}
+                </Grid>
+              }
+              secondary={
+                <React.Fragment>
+                  <Typography
+                    component="span"
+                    variant="body2"
+                    color="textPrimary"
+                  >
+                    チャットメッセージ
+                                    </Typography>
+                </React.Fragment>
+              }
+            />
+          </ListItem>
+          <Divider />
+        </List>
+      </Grid>
+
+      <Box
+        color="transparent"
+      >
+        <div>
+          <Grid container alignItems="flex-end">
+            <Grid item>
+              <Input placeholder="メッセージを入力してください" />
+            </Grid>
+            <Grid item>
+              <SendIcon color="primary" />
+            </Grid>
+          </Grid>
+        </div>
+      </Box>
+    </Grid>
+  );
+}

@@ -21,14 +21,12 @@ const data: Room[] = [
         id: "1",
         name: "test",
         last: new Date(),
-        icons: "Work",
         users: [],
     },
     {
         id: "2",
         name: "test",
         last: new Date(),
-        icons: "Work",
         users: [],
     },
 ];
@@ -42,8 +40,7 @@ export default function ChatListPage() {
     const handleClose = function (_: React.MouseEvent): void {
         setOpen(false);
     };
-    const createHandler = (data: { icon: string, roomName: string }) => {
-        console.log(data);
+    const createHandler = (data: { roomName: string }) => {
         setOpen(false)
     }
     return (
